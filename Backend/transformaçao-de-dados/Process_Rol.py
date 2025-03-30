@@ -66,7 +66,7 @@ def processar_pdf_com_substituicoes(pdf_paths):
 
 def main():
     
-    pdf_paths = ["Anexo_1.pdf", "Anexo_2.pdf"]
+    pdf_paths = ["Anexo_1.pdf"]
 
    
     arquivos_csv = processar_pdf_com_substituicoes(pdf_paths)

@@ -19,21 +19,20 @@ cursor = conn.cursor(buffered=True)
 print("Conexão bem-sucedida ao MySQL!")
 
 
-with open(r"C:\Users\jeffe\documents\teste-estagio\Backend\scripts.sql", "r", encoding="utf-8") as script_file:
+with open(r"C:\Users\jeffe\documents\teste-estagio\Backend\teste-banco-de-dados\scripts.sql", "r", encoding="utf-8") as script_file:
     sql_script = script_file.read()
 
 
-commands = sql_script.split(";")
+commands = sql_script.split(";\n")
 
 
 for command in commands:
     if command.strip():
         try:
             cursor.execute(command)
-            cursor.fetchall()  
-            print(f"Executado: {command.strip()}")
+            print(f"Executado: {command.strip().split('\n')[0]}") 
         except mysql.connector.Error as err:
-            print(f"Erro ao executar o comando: {command.strip()}\nErro: {err}")
+            print(f"Erro ao executar o comando:\n{command}\nErro: {err}")
 
 
 conn.commit()
