@@ -24,14 +24,13 @@ CREATE TABLE operadoras (
 
 
 CREATE TABLE demonstrativos_contabeis (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     DATA_STR DATE,
     REG_ANS INT,
     CD_CONTA_CONTABIL VARCHAR(50),
     DESCRICAO VARCHAR(255),
     VL_SALDO_INICIAL DECIMAL(18,2),
     VL_SALDO_FINAL DECIMAL(18,2),
-    FOREIGN KEY (REG_ANS) REFERENCES operadoras(Registro_ANS)
+    FOREIGN KEY (REG_ANS) REFERENCES operadoras(Registro_ANS) ON DELETE CASCADE
 );
 
 
@@ -48,6 +47,7 @@ INTO TABLE demonstrativos_contabeis
 FIELDS TERMINATED BY ';'  
 LINES TERMINATED BY '\n' 
 IGNORE 1 ROWS;
+
 
 
 -- Consulta para as 10 operadoras com maiores despesas nos últimos 3 meses
@@ -67,8 +67,6 @@ AND DATA_STR >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
 GROUP BY REG_ANS
 ORDER BY total_despesas DESC
 LIMIT 10;
-
-
 
 
 
